@@ -132,8 +132,10 @@ const DisplayRecordScreen = ({dispatch,userData,navigation}) => {
                     
                     fontSize:16,
                     paddingVertical:4,
-                    width:"82%"
+                    width:"82%",
+                    color:"black"
                     }}
+
                         placeholderTextColor="black"
                         placeholder="Search"
                         label="Search"
