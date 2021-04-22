@@ -47,7 +47,7 @@ const ProfileScreen = ({route}) => {
                         {translateX:BottomPosition.x},
                         {translateY:BottomPosition.y}
                     ]}}>
-        <Card style={{marginHorizontal:15,position:"absolute"}}>
+        <Card style={{marginHorizontal:15,position:"absolute",alignSelf:"center"}}>
             
             <Text style={styles.textStyle}>{Name}</Text>
             <Text style={[styles.textStyle,{color:"#64abc4",fontSize:17,marginTop:-10}]}>{Company}</Text>

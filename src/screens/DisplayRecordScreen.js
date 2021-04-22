@@ -5,9 +5,10 @@ import * as userActions from "../redux/actions/userData"
 import {IconButton,ActivityIndicator,Divider,Colors} from "react-native-paper"
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 const DisplayRecordScreen = ({dispatch,userData,navigation}) => {
+    
     const [isLoading,setLoading] = useState(true)
-    const [FilteredData,setFilteredData] = useState(userData)
-    const [BackupData,setBackupData] = useState(userData)
+    const [FilteredData,setFilteredData] = useState([])
+    const [BackupData,setBackupData] = useState([])
     const [IsSortAscending ,setIsSortAscending ] = useState(true)
     let query = null
     const FetchData = async () => {
@@ -16,6 +17,8 @@ const DisplayRecordScreen = ({dispatch,userData,navigation}) => {
         .then(data=>data.json())
         .then(data2=>{
             dispatch(userActions.setUserData(data2))
+            setFilteredData(data2)
+            setBackupData(data2)
             setLoading(false)
         })
         
@@ -71,7 +74,7 @@ const DisplayRecordScreen = ({dispatch,userData,navigation}) => {
     }
     
     const renderItem = item => {
-       
+      
         return(
             <>
             
@@ -81,12 +84,12 @@ const DisplayRecordScreen = ({dispatch,userData,navigation}) => {
             >
                 <View style={{width:"20%"}}>
                 <TouchableOpacity onPress={()=>navigation.navigate("Profile",{
-                    ProfilePicture:item.picture,
+                    ProfilePicture:"https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png",
                     Name : item.firstname + " " + item.surname,
                     Company : item.company,
                 })}>
                 <Image
-                    source={{uri:item.picture}}
+                    source={{uri:"https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png"}}
                     style={{width:80,height:80,borderRadius:40,margin:5,marginVertical:15,justifyContent:"center"}}
                 />
                 </TouchableOpacity>
@@ -131,6 +134,7 @@ const DisplayRecordScreen = ({dispatch,userData,navigation}) => {
                     paddingVertical:4,
                     width:"82%"
                     }}
+                        placeholderTextColor="black"
                         placeholder="Search"
                         label="Search"
                         onChangeText={(item)=>filterItem(item)}
